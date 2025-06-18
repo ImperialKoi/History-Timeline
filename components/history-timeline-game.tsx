@@ -17,24 +17,24 @@ interface HistoricalEvent {
 }
 
 const historicalEvents: HistoricalEvent[] = [
-  { id: "1",  name: "Schlieffen Plan Developed",               date: "1905-01-01", year: 1905 },
+  { id: "1",  name: "Schlieffen Plan Developed",                date: "1905-01-01", year: 1905 },
   { id: "2",  name: "Assassination of Archduke Franz Ferdinand", date: "1914-06-28", year: 1914 },
   { id: "3",  name: "Start of World War I",                     date: "1914-07-28", year: 1914 },
   { id: "4",  name: "First Battle of the Ypres",                date: "1914-10-19", year: 1914 },
   { id: "5",  name: "Second Battle of the Ypres",               date: "1915-04-22", year: 1915 },
   { id: "6",  name: "Battle of the Somme (begin)",              date: "1916-07-01", year: 1916 },
-  { id: "7",  name: "Zimmerman Telegram",                        date: "1917-01-17", year: 1917 },
+  { id: "7",  name: "Zimmerman Telegram",                       date: "1917-01-17", year: 1917 },
   { id: "8",  name: "Vimy Ridge (April 9–12)",                  date: "1917-04-09", year: 1917 },
   { id: "9",  name: "United States Enters WWI",                 date: "1917-04-06", year: 1917 },
   { id: "10", name: "Conscription Crisis (Canada)",             date: "1917-06-01", year: 1917 },
   { id: "11", name: "Passchendaele (Third Battle of Ypres)",    date: "1917-07-31", year: 1917 },
-  { id: "12", name: "Russia Withdraws (Brest-Litovsk)",         date: "1917-11-07", year: 1917 },
+  { id: "12", name: "Russia Withdraws WW1",                     date: "1917-11-07", year: 1917 },
   { id: "13", name: "Halifax Explosion",                        date: "1917-12-06", year: 1917 },
   { id: "14", name: "Battle of Amiens",                         date: "1918-08-08", year: 1918 },
   { id: "15", name: "Armistice of World War I",                 date: "1918-11-11", year: 1918 },
   { id: "16", name: "Paris Peace Conference & Treaty of Versailles", date: "1919-06-28", year: 1919 },
   { id: "17", name: "Winnipeg General Strike",                  date: "1919-05-15", year: 1919 },
-  { id: "18", name: "Prohibition Begins (U.S.)",                date: "1920-01-17", year: 1920 },
+  { id: "18", name: "Prohibition Begins       ",                date: "1920-01-17", year: 1920 },
   { id: "19", name: "Munich Putsch",                            date: "1923-11-08", year: 1923 },
   { id: "20", name: "Hitler Sent to Prison",                    date: "1923-11-11", year: 1923 },
   { id: "21", name: "Persons Case Decision",                    date: "1929-10-18", year: 1929 },
@@ -51,7 +51,7 @@ const historicalEvents: HistoricalEvent[] = [
   { id: "32", name: "Munich Agreement",                         date: "1938-09-30", year: 1938 },
   { id: "33", name: "Kristallnacht",                            date: "1938-11-09", year: 1938 },
   { id: "34", name: "S.S. St. Louis Departs",                   date: "1939-05-13", year: 1939 },
-  { id: "35", name: "Molotov–Ribbentrop Pact",                  date: "1939-08-23", year: 1939 },
+  { id: "35", name: "Non Agression Pact",                       date: "1939-08-23", year: 1939 },
   { id: "36", name: "Start of World War II",                    date: "1939-09-01", year: 1939 },
   { id: "37", name: "Pearl Harbor",                             date: "1941-12-07", year: 1941 },
   { id: "38", name: "Japanese Internment in Canada",            date: "1942-02-19", year: 1942 },
@@ -441,7 +441,6 @@ export default function Component() {
                       </Badge>
                       <div className="flex-1 min-w-0">
                         <h3 className="font-medium text-sm sm:text-base leading-tight">{event.name}</h3>
-                        <p className="text-xs sm:text-sm text-muted-foreground">{event.year}</p>
                       </div>
                     </div>
 
