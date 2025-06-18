@@ -24,7 +24,7 @@ const historicalEvents: HistoricalEvent[] = [
   { id: "5",  name: "Second Battle of the Ypres",               date: "1915-04-22", year: 1915 },
   { id: "6",  name: "Battle of the Somme (begin)",              date: "1916-07-01", year: 1916 },
   { id: "7",  name: "Zimmerman Telegram",                       date: "1917-01-17", year: 1917 },
-  { id: "8",  name: "Vimy Ridge (April 9–12)",                  date: "1917-04-09", year: 1917 },
+  { id: "8",  name: "Vimy Ridge",                               date: "1917-04-09", year: 1917 },
   { id: "9",  name: "United States Enters WWI",                 date: "1917-04-06", year: 1917 },
   { id: "10", name: "Conscription Crisis (Canada)",             date: "1917-06-01", year: 1917 },
   { id: "11", name: "Passchendaele (Third Battle of Ypres)",    date: "1917-07-31", year: 1917 },
@@ -103,6 +103,7 @@ export default function Component() {
   const [elapsedTime, setElapsedTime] = useState(0)
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null)
   const [dropIndicatorIndex, setDropIndicatorIndex] = useState<number | null>(null)
+  const [showAnswerKey, setShowAnswerKey] = useState(false)
 
   useEffect(() => {
     resetGame()
@@ -125,6 +126,7 @@ export default function Component() {
     setScore(0)
     setStartTime(Date.now())
     setElapsedTime(0)
+    setShowAnswerKey(false)
   }
 
   const moveEvent = (index: number, direction: "up" | "down") => {
@@ -304,6 +306,7 @@ export default function Component() {
 
     setScore(correctCount)
     setGameState(correctCount === events.length ? "completed" : "checking")
+    setShowAnswerKey(true)
   }
 
   const getEventStatus = (index: number): "correct" | "incorrect" | "neutral" => {
@@ -389,6 +392,57 @@ export default function Component() {
               <span className="font-semibold">Perfect! All events in correct order!</span>
             </div>
             <p className="text-green-600 mt-2">Completed in {formatTime(elapsedTime)}</p>
+          </CardContent>
+        </Card>
+      )}
+
+      {showAnswerKey && (
+        <Card className="bg-blue-50 border-blue-200">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-blue-800">📚 Answer Key - Correct Timeline</h3>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowAnswerKey(false)}
+                className="text-blue-600 hover:text-blue-800"
+              >
+                Hide
+              </Button>
+            </div>
+            <div className="space-y-2">
+              {[...gameEvents]
+                .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+                .map((event, index) => (
+                  <div
+                    key={event.id}
+                    className="flex items-center gap-3 p-2 bg-white rounded-lg border border-blue-100"
+                  >
+                    <Badge variant="secondary" className="min-w-[50px] justify-center text-xs">
+                      #{index + 1}
+                    </Badge>
+                    <div className="flex-1">
+                      <h4 className="font-medium text-sm">{event.name}</h4>
+                      <p className="text-xs text-muted-foreground">
+                        {new Date(event.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-medium text-blue-700">{event.year}</p>
+                    </div>
+                  </div>
+                ))}
+            </div>
+            <div className="mt-4 p-3 bg-blue-100 rounded-lg">
+              <p className="text-xs text-blue-700">
+                💡 <strong>Tip:</strong> Events are sorted by their exact dates. Some events from the same year may
+                surprise you with their specific timing!
+              </p>
+            </div>
           </CardContent>
         </Card>
       )}
